@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <ul>
+        {% for item in cart_items %}
+            <li>
+                {{ item.product.name }} - ${{ item.product.price }} - Quantity: {{ item.quantity }}
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Total: ${{ total }}</p>
+    <form method="post" action="{% url 'estore:checkout' %}">
+        {% csrf_token %}
+        <button type="submit">Checkout</button>
+    </form>
+    <a href="{% url 'estore:home' %}">Back to Catalog</a>
+</body>
+</html>
